@@ -1,0 +1,5 @@
+spring.application.name=JPAStudentStart
+
+spring.h2.console.enabled=true
+
+jdbc:h2:mem:4ba847b4-0914-4c30-bb1f-11be5b845c51
