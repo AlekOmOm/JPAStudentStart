@@ -2,6 +2,7 @@ package dk.kea.jpastudentstart.config;
 
 import dk.kea.jpastudentstart.model.Student;
 import dk.kea.jpastudentstart.model.HomeWork;
+import dk.kea.jpastudentstart.model.Subject;
 import dk.kea.jpastudentstart.repository.HomeWorkRepository;
 import dk.kea.jpastudentstart.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -47,6 +49,20 @@ public class InitData implements CommandLineRunner {
             new HomeWork("Art", "Art homework")
     };
 
+    Subject[] subjects = new Subject[] {
+            new Subject("Math", 10),
+            new Subject("English", 5),
+            new Subject("Literature", 5),
+            new Subject("History", 5),
+            new Subject("Physics", 10),
+            new Subject("Chemistry", 10),
+            new Subject("Biology", 10),
+            new Subject("Geography", 5),
+            new Subject("Music", 5),
+            new Subject("Art", 5)
+    };
+
+    int r = 0;
 
     @Override
     public void run(String... args) throws Exception {
@@ -56,13 +72,26 @@ public class InitData implements CommandLineRunner {
         }
 
         int i = 0;
+        int r = 0;
         for (Student student : students) {
             HomeWork homeWork = homeWorkRepository.save(homeWorks[i]);
             student.setHomeWork(homeWorks[i]);
+            student.addSubjects(getRandomSubjects());
             i++;
         }
 
         studentRepository.saveAll(Arrays.asList(students));
+    }
 
+    private List<Subject> getRandomSubjects() {
+        List<Subject> subjects = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            subjects.add(this.subjects[getAnInt()]);
+        }
+        return subjects;
+    }
+
+    private static int getAnInt() {
+        return (int) (Math.random() * 10);
     }
 }

@@ -22,7 +22,6 @@ public class HomeWork {
     public HomeWork (String title, String subject) {
         this.title = title;
         this.subject = subject;
-
     }
 
     public HomeWork() {

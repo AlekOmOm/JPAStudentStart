@@ -28,6 +28,9 @@ public class Student {
     @JoinColumn(name = "home_workidfk", referencedColumnName = "homeWorkID", nullable = true)
     private HomeWork homeWork;
 
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Subject> subjects;
+
     public Student() {
     }
 
@@ -77,5 +80,26 @@ public class Student {
     public void setHomeWork(HomeWork homeWork) {
         this.homeWork = homeWork;
     }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void addSubjects(List<Subject> subjects) {
+        for (Subject subject : subjects) {
+            addSubject(subject);
+        }
+    }
+
+    public void addSubject(Subject subject) {
+        subjects.add(subject);
+        subject.setStudent(this);
+    }
+
+    public void removeSubject(Subject subject) {
+        subjects.remove(subject);
+        subject.setStudent(null);
+    }
+
 
 }
