@@ -37,7 +37,7 @@ public class InitData implements CommandLineRunner {
     HomeWork[] homeWorks = new HomeWork[] {
             new HomeWork("Math", "Math homework"),
             new HomeWork("English", "English homework"),
-            new HomeWork("Danish", "Danish homework"),
+            new HomeWork("Literature", "Literature homework"),
             new HomeWork("History", "History homework"),
             new HomeWork("Physics", "Physics homework"),
             new HomeWork("Chemistry", "Chemistry homework"),
