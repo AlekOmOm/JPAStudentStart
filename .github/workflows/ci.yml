@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin' # Distribution of the JDK
-          java-version: '17' # Java version you are using
+          java-version: '21' # Java version you are using
 
       - name: Cache Maven packages
         uses: actions/cache@v3
