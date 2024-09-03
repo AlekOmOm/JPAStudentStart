@@ -21,6 +21,7 @@ public class StudentRestController {
 
     @GetMapping("/studentsJSON")
     public List<Student> getStudentsJSON() {
+
         return studentRepository.findAll();
     }
     @GetMapping("/students")
@@ -63,6 +64,7 @@ public class StudentRestController {
     public Student putStudent(@PathVariable String name, @PathVariable String dob) {
         Student student = studentRepository.findByName(name);
         student.setBornDate(LocalDate.parse(dob));
+
         return studentRepository.save(student);
     }
 
@@ -70,11 +72,9 @@ public class StudentRestController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public String deleteStudent(@PathVariable String name) {
         Student student = studentRepository.findByName(name);
-
         studentRepository.delete(student);
+
         return "Student deleted";
     }
-
-
 
 }

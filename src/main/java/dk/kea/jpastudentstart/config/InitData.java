@@ -51,6 +51,9 @@ public class InitData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        if (studentRepository.count() > 0) {
+            return;
+        }
 
         int i = 0;
         for (Student student : students) {
